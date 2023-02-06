@@ -1,5 +1,10 @@
 export default {
   colors: {
+
+    initiaisScreens: '#E95757',
+    cardInitialScreens: '#DB5252',
+
+
     pomodoro: '#BA4949',
     pomodoroCont: '#C65454',
 

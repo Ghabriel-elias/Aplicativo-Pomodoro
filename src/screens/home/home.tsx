@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import theme from '../../global/styles/theme';
 
 import { Linking, TouchableOpacity } from 'react-native';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
   AreaTexts,
@@ -13,7 +15,7 @@ import {
   Cont,
   Start,
   StartTouchble,
-  CopyRight
+  CopyRight,
 } from './style'
 
 let timer: any
@@ -39,11 +41,10 @@ export default function Home() {
 
   const [contagem, setContagem] = useState('25:00')
 
-  const [verification, setVerification] = useState('pomodoro')
+  const [cont, setCont] = useState(1)
+  const [pomodoroForShort, setPomodoroForLong] = useState(1)
 
   function changeForPomodoro() {
-
-    setVerification('pomodoro')
 
     setpomodororBg(theme.colors.backgroundTexts)
     setshortBg(theme.colors.backgroundTextsTransparente)
@@ -61,16 +62,14 @@ export default function Home() {
     setTextButton('Start')
     ss = 0
     mm = 25
+
   }
 
   function changeForShort() {
 
-    setVerification('short')
-
     setshortBg(theme.colors.backgroundTexts)
     setpomodororBg(theme.colors.backgroundTextsTransparente)
     setlongBg(theme.colors.backgroundTextsTransparente)
-
 
     setshortFontFamily(theme.fonts.Bold)
     setpomodoroFontFamily(theme.fonts.regular)
@@ -88,12 +87,9 @@ export default function Home() {
 
   function changeForLong() {
 
-    setVerification('long')
-
     setlongBg(theme.colors.backgroundTexts)
     setpomodororBg(theme.colors.backgroundTextsTransparente)
     setshortBg(theme.colors.backgroundTextsTransparente)
-
 
     setlongFontFamily(theme.fonts.Bold)
     setpomodoroFontFamily(theme.fonts.regular)
@@ -119,43 +115,62 @@ export default function Home() {
       timer = setInterval(() => {
 
         if (ss === 0) {
-          ss = 59
+          ss = 60
           mm--
         }
         ss--
 
+        if (mm === 0 && ss === 0) {
+          setCont(cont + 1)
+          if (cont === 7) {
+            changeForLong()
+            setCont(1)
+            setPomodoroForLong(0)
+          } else if (pomodoroForShort === 0 || pomodoroForShort === 2 || pomodoroForShort === 4 || pomodoroForShort === 6) {
+            changeForPomodoro()
+            setPomodoroForLong(pomodoroForShort + 1)
+          } else if (pomodoroForShort == 1 || pomodoroForShort === 3 || pomodoroForShort === 5) {
+            changeForShort()
+            setPomodoroForLong(pomodoroForShort + 1)
+          }
+        }
+
         let format = (mm < 10 ? `0${mm}` : mm) + ":" + (ss < 10 ? `0${ss}` : ss)
         setContagem(format)
-      }, 100)
+      }, 1000)
       setTextButton('Stop')
     }
   }
 
   return (
     <Container style={{ backgroundColor: backgroundContainer }}>
-      <AreaTexts></AreaTexts>
-      <Main style={{ backgroundColor: backgroundMain }}>
-        <Indicators>
-          <IndicatorTouchble onPress={changeForPomodoro} style={{ backgroundColor: pomodororBg }}>
-            <Indicator style={{ fontFamily: pomodoroFontFamily }}>Pomodoro</Indicator>
-          </IndicatorTouchble>
-          <IndicatorTouchble onPress={changeForShort} style={{ backgroundColor: shortBg }}>
-            <Indicator style={{ fontFamily: shortFontFamily }}>Short Break</Indicator>
-          </IndicatorTouchble>
-          <IndicatorTouchble onPress={changeForLong} style={{ backgroundColor: longBg }}>
-            <Indicator style={{ fontFamily: longFontFamily }}>Long Break</Indicator>
-          </IndicatorTouchble>
-        </Indicators>
-        <Cont>{contagem}</Cont>
-        <StartTouchble onPress={start}>
-          <Start style={{ color: backgroundMain }}>{textButton}</Start>
-        </StartTouchble>
-      </Main>
-      <AreaTexts>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
-          <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
-        </TouchableOpacity>
-      </AreaTexts>
+      <SafeAreaView>
+        {/* <TouchableBack onPress={() => navigation.goBack()}>
+            <ArrowBack>←</ArrowBack>
+          </TouchableBack> */}
+        <Main style={{ backgroundColor: backgroundMain }}>
+          <Indicators>
+            <IndicatorTouchble onPress={changeForPomodoro} style={{ backgroundColor: pomodororBg }}>
+              <Indicator style={{ fontFamily: pomodoroFontFamily }}>Pomodoro</Indicator>
+            </IndicatorTouchble>
+            <IndicatorTouchble onPress={changeForShort} style={{ backgroundColor: shortBg }}>
+              <Indicator style={{ fontFamily: shortFontFamily }}>Short Break</Indicator>
+            </IndicatorTouchble>
+            <IndicatorTouchble onPress={changeForLong} style={{ backgroundColor: longBg }}>
+              <Indicator style={{ fontFamily: longFontFamily }}>Long Break</Indicator>
+            </IndicatorTouchble>
+          </Indicators>
+          <Cont>{contagem}</Cont>
+          <StartTouchble onPress={start}>
+            <Start style={{ color: backgroundMain }}>{textButton}</Start>
+          </StartTouchble>
+        </Main>
+        <AreaTexts>
+          <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
+            <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
+          </TouchableOpacity>
+        </AreaTexts>
+      </SafeAreaView >
     </Container >
   );
 }
