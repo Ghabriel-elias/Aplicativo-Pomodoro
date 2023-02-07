@@ -1,16 +1,13 @@
 export default {
   colors: {
 
-    initiaisScreens: '#E95757',
-    cardInitialScreens: '#DB5252',
-
-
-    pomodoro: '#BA4949',
-    pomodoroCont: '#C65454',
+    pomodoro: '#E95757',
+    pomodoroCont: '#DB5252',
 
     text: '#fff',
     backgroundTexts: 'rgba(46, 39, 39, 0.3)',
     backgroundTextsTransparente: 'transparent',
+    backgroundModal: 'rgba(30, 30, 30, 0.8)',
 
     shortBreak: '#38858A',
     shortBrakCont: '#5AA2A7',
