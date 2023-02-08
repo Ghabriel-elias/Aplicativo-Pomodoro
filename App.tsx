@@ -15,6 +15,7 @@ import {
 } from '@expo-google-fonts/inter'
 import { ActivityIndicator } from 'react-native';
 import ChooseConfig from './src/screens/chooseConfig/chooseConfig';
+import ChooseMinutes from './src/screens/chooseMinutes/chooeMinutes';
 
 export default function App() {
 
@@ -33,7 +34,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator >
+        <Stack.Navigator initialRouteName='ChooseMinutes'>
           <Stack.Screen
             name='ChooseConfig'
             component={ChooseConfig}
@@ -44,6 +45,13 @@ export default function App() {
           <Stack.Screen
             name='Home'
             component={Home}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen
+            name='ChooseMinutes'
+            component={ChooseMinutes}
             options={{
               headerShown: false
             }}

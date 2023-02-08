@@ -13,7 +13,7 @@ export const AreaModal = styled.View`
   flex: 1;
   justify-content: flex-end;
   align-items:center; 
-`
+  `
 
 export const ContentModal = styled.View`
   background-color: ${({ theme }) => theme.colors.backgroundModal};
@@ -70,11 +70,12 @@ export const WelcomeTexts = styled.View`
 `
 
 export const Title = styled.Text`
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(21)}px;
   font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.text};
   margin-top: ${RFValue(50)}px;
   margin-bottom: ${RFValue(35)}px;
+  letter-spacing: 1px;
 `
 
 export const Texts = styled.Text`
@@ -82,6 +83,7 @@ export const Texts = styled.Text`
   font-family: ${({ theme }) => theme.fonts.semiBold};
   color: ${({ theme }) => theme.colors.text};
   width: 80%;
+  text-align: center;
 `
 
 export const Main = styled.View`

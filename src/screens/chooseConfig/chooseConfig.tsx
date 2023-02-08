@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
   Container,
@@ -24,17 +24,29 @@ import {
 
 export default function ChooseConfig() {
 
+  const [containerBg, setContainerBg] = useState(1)
+
   const [modalVisible, setModalVisible] = useState(false)
 
   const navigation: any = useNavigation()
 
+  function showModal() {
+    setModalVisible(true)
+    setContainerBg(0.8)
+  }
+
+  function hideModal() {
+    setModalVisible(false)
+    setContainerBg(1)
+  }
+
   return (
-    <Container>
+    <Container style={{ opacity: containerBg }}>
       <ModalContainer transparent={true} animationType='slide' visible={modalVisible}>
         <AreaModal>
           <ContentModal>
             <AreaClose>
-              <CloseTouchable onPress={() => setModalVisible(false)}>
+              <CloseTouchable onPress={() => hideModal()}>
                 <XForClose>X</XForClose>
               </CloseTouchable>
             </AreaClose>
@@ -62,7 +74,7 @@ export default function ChooseConfig() {
         </Touchable>
       </Main>
       <ViewModal>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <TouchableOpacity onPress={() => showModal()}>
           <TextFooter>Como funciona?</TextFooter>
         </TouchableOpacity>
       </ViewModal>
