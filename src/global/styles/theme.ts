@@ -1,6 +1,5 @@
 export default {
   colors: {
-
     pomodoro: '#E95757',
     pomodoroCont: '#DB5252',
 

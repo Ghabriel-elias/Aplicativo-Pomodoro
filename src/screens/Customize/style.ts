@@ -22,7 +22,7 @@ export const Minutes = styled.View`
 export const ButtonConfirm = styled.View`
   flex: 0.4;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
 `
 
 export const MinutesCard = styled.View`
@@ -37,8 +37,10 @@ export const Cards = styled.Text`
   font-size: ${RFValue(50)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.Bold};
-  padding: ${RFValue(20)}px ${RFValue(15)}px;
+  padding: ${RFValue(20)}px ${RFValue(0)}px;
   border-radius: ${RFValue(5)}px;
+  width: 30%;
+  text-align: center;
 `
 
 export const IndicatorsMinute = styled.Text`
@@ -46,7 +48,9 @@ export const IndicatorsMinute = styled.Text`
   font-size: ${RFValue(12)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.regular};
-  padding: ${RFValue(3)}px ${RFValue(15)}px;
+  width: 30%;
+  height: ${RFValue(23)}px;
+  text-align: center;
   margin-top: ${RFValue(7)}px;
   border-radius: ${RFValue(5)}px;
 `
@@ -91,6 +95,8 @@ export const Number = styled.Text`
   font-size: ${RFValue(40)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.Bold};
+  text-align: center;
+  width: 50%;
 `
 
 export const TouchableIncrementeDescrement = styled.TouchableOpacity`
@@ -115,7 +121,6 @@ export const Touchable = styled.TouchableOpacity`
   width: 70%;
   justify-content: center;
   align-items: center;
-  margin-top: ${RFValue(15)}px;
   border-radius: 10px;
 `
 
@@ -124,4 +129,11 @@ export const TextTouchableConfirm = styled.Text`
   color: ${({ theme }) => theme.colors.pomodoro};
   font-family: ${({ theme }) => theme.fonts.semiBold};
   padding: ${RFValue(5)}px ${RFValue(0)}px;
+`
+
+export const CopyRight = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.semiBold};
+  font-size: ${RFValue(13)}px;
+  color: ${({ theme }) => theme.colors.text};
+  text-align: center;
 `

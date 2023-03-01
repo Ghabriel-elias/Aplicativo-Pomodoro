@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Linking, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../models";
 import {
   Container,
   AreaModal,
-  ModalContainer,
   Main,
   ViewModal,
   WelcomeTexts,
@@ -19,30 +19,32 @@ import {
   XForClose,
   ViewTextsModal,
   TitleModal,
-  TextModal
+  TextModal,
+  CopyRight,
+  ViewCopy
 } from "./styles";
 
 export default function ChooseConfig() {
 
-  const [containerBg, setContainerBg] = useState(1)
+  const [opacityContainer, setOpacityContainer] = useState(true)
 
   const [modalVisible, setModalVisible] = useState(false)
 
-  const navigation: any = useNavigation()
+  const navigation = useNavigation<PropsStack>()
 
   function showModal() {
     setModalVisible(true)
-    setContainerBg(0.8)
+    setOpacityContainer(false)
   }
 
   function hideModal() {
     setModalVisible(false)
-    setContainerBg(1)
+    setOpacityContainer(true)
   }
 
   return (
-    <Container style={{ opacity: containerBg }}>
-      <ModalContainer transparent={true} animationType='slide' visible={modalVisible}>
+    <Container opacity={opacityContainer}>
+      <Modal transparent={true} animationType='slide' visible={modalVisible}>
         <AreaModal>
           <ContentModal>
             <AreaClose>
@@ -60,17 +62,17 @@ export default function ChooseConfig() {
             </ViewTextsModal>
           </ContentModal>
         </AreaModal>
-      </ModalContainer>
+      </Modal>
       <WelcomeTexts>
         <Title>Seja bem vindo ao Pomo Focus</Title>
-        <Texts> Antes de iniciarmos de fato, preciso que você defina qual configuração a ser utilizada</Texts>
+        <Texts>Antes de iniciarmos de fato, preciso que você defina qual configuração a ser utilizada</Texts>
       </WelcomeTexts>
       <Main>
-        <Touchable onPress={() => navigation.navigate('Home')}>
+        <Touchable onPress={() => navigation.navigate('Standard')}>
           <TextTouchable >Padrão</TextTouchable>
         </Touchable>
-        <Touchable>
-          <TextTouchable>Personalizada</TextTouchable>
+        <Touchable onPress={() => navigation.navigate('Customize')}>
+          <TextTouchable >Personalizada</TextTouchable>
         </Touchable>
       </Main>
       <ViewModal>
@@ -78,6 +80,11 @@ export default function ChooseConfig() {
           <TextFooter>Como funciona?</TextFooter>
         </TouchableOpacity>
       </ViewModal>
+      <ViewCopy>
+        <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
+          <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
+        </TouchableOpacity>
+      </ViewCopy>
     </Container>
   )
 }
