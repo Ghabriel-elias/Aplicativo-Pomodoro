@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Linking, TouchableOpacity } from 'react-native';
 
-import {
-  SafeArea,
-  AreaTexts,
-  Main,
-  Container,
-  Indicators,
-  Indicator,
-  IndicatorTouchble,
-  Cont,
-  Start,
-  StartTouchble,
-  CopyRight,
-} from './style'
+import * as S from './style'
+import { LinkedinLink } from '../../components/LinkedinLink';
 
 let timer: any
 
@@ -24,12 +12,11 @@ let mm = 25
 export default function Standard({ route }: any) {
 
   useEffect(() => {
-    console.log(route.params?.longBreak)
     if (route.params?.pomodoro != undefined) {
       setContagem(`${route.params?.pomodoro}:00`)
       mm = Number(route.params?.pomodoro)
       return
-    } 
+    }
     setContagem('25:00')
   }, [])
 
@@ -57,11 +44,11 @@ export default function Standard({ route }: any) {
     clearInterval(timer)
     setTextButton('Start')
     ss = 0
-    if( route.params?.pomodoro != undefined){
-      mm = Number( route.params?.pomodoro)
+    if (route.params?.pomodoro != undefined) {
+      mm = Number(route.params?.pomodoro)
       setContagem(`${route.params?.pomodoro}:00`)
       return
-    } 
+    }
     mm = 25
     setContagem('25:00')
   }
@@ -77,7 +64,7 @@ export default function Standard({ route }: any) {
     clearInterval(timer)
     setTextButton('Start')
     ss = 0
-    if(route.params?.shortBreak != undefined){
+    if (route.params?.shortBreak != undefined) {
       mm = Number(route.params?.shortBreak)
       setContagem(`${route.params?.shortBreak}:00`)
       return
@@ -98,7 +85,7 @@ export default function Standard({ route }: any) {
     setTextButton('Start')
 
     ss = 0
-    if(route.params?.longBreak != undefined){
+    if (route.params?.longBreak != undefined) {
       mm = Number(route.params?.longBreak)
       setContagem(`${route.params?.longBreak}:00`)
       return
@@ -144,31 +131,29 @@ export default function Standard({ route }: any) {
   }
 
   return (
-    <SafeArea colorBg={BgColor}>
-      <Container colorBg={BgColor}>
-        <Main colorBg={BgColor}>
-          <Indicators>
-            <IndicatorTouchble onPress={changeForPomodoro} colorTextBg={pomodoroIndicator}>
-              <Indicator colorTextBg={pomodoroIndicator}>Pomodoro</Indicator>
-            </IndicatorTouchble>
-            <IndicatorTouchble onPress={changeForShort} colorTextBg={shortIndicator}>
-              <Indicator colorTextBg={shortIndicator}>Short Break</Indicator>
-            </IndicatorTouchble>
-            <IndicatorTouchble onPress={changeForLong} colorTextBg={longIndicator}>
-              <Indicator colorTextBg={longIndicator}>Long Break</Indicator>
-            </IndicatorTouchble>
-          </Indicators>
-          <Cont>{contagem}</Cont>
-          <StartTouchble onPress={start}>
-            <Start colorBg={BgColor}>{textButton}</Start>
-          </StartTouchble>
-        </Main>
-        <AreaTexts>
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
-            <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
-          </TouchableOpacity>
-        </AreaTexts>
-      </Container >
-    </SafeArea >
+    <S.SafeArea colorBg={BgColor}>
+      <S.Container colorBg={BgColor}>
+        <S.Main colorBg={BgColor}>
+          <S.Indicators>
+            <S.IndicatorTouchble onPress={changeForPomodoro} colorTextBg={pomodoroIndicator}>
+              <S.Indicator colorTextBg={pomodoroIndicator}>Pomodoro</S.Indicator>
+            </S.IndicatorTouchble>
+            <S.IndicatorTouchble onPress={changeForShort} colorTextBg={shortIndicator}>
+              <S.Indicator colorTextBg={shortIndicator}>Short Break</S.Indicator>
+            </S.IndicatorTouchble>
+            <S.IndicatorTouchble onPress={changeForLong} colorTextBg={longIndicator}>
+              <S.Indicator colorTextBg={longIndicator}>Long Break</S.Indicator>
+            </S.IndicatorTouchble>
+          </S.Indicators>
+          <S.Cont>{contagem}</S.Cont>
+          <S.StartTouchble onPress={start}>
+            <S.Start colorBg={BgColor}>{textButton}</S.Start>
+          </S.StartTouchble>
+        </S.Main>
+        <S.AreaTexts>
+          <LinkedinLink />
+        </S.AreaTexts>
+      </S.Container >
+    </S.SafeArea >
   );
 }

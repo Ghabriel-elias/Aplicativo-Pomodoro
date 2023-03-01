@@ -117,9 +117,3 @@ export const Start = styled.Text<ColorsChange>`
   font-family: ${({ theme }) => theme.fonts.semiBold};
   font-size: ${RFValue(28)}px;
 `
-
-export const CopyRight = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.semiBold};
-  font-size: ${RFValue(13)}px;
-  color: ${({ theme }) => theme.colors.text};
-  `

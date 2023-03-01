@@ -1,31 +1,10 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Linking } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import theme from '../../global/styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
-import {
-  Container,
-  ViewMinutes,
-  Minutes,
-  ButtonConfirm,
-  MinutesCard,
-  IndicatorsMinute,
-  Cards,
-  Title,
-  AreaCardsChangeMinute,
-  CardsChangeMinute,
-  TextIndicators,
-  SpaceChangeMinute,
-  TouchableIncrementeDescrement,
-  Number,
-  TextTouchable,
-  Touchable,
-  TextTouchableConfirm,
-  CopyRight
-} from './style'
 import { PropsStack } from '../../models';
-
+import { SafeArea } from '../Standard/style';
+import { LinkedinLink } from '../../components/LinkedinLink';
+import * as S from './style'
 
 export default function Customize() {
 
@@ -36,7 +15,6 @@ export default function Customize() {
   const [shorMinutes, setShorMinutes]: any = useState('00')
 
   const [longMinutes, setLongMinutes]: any = useState('00')
-
 
   function descrement(element: any) {
     if (element === 'pomodoroMinutes') {
@@ -102,74 +80,72 @@ export default function Customize() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.pomodoro }}>
-      <Container>
-        <ViewMinutes>
-          <MinutesCard>
-            <Cards>{pomodoroMinutes}</Cards>
-            <Cards>{shorMinutes}</Cards>
-            <Cards>{longMinutes}</Cards>
-          </MinutesCard>
-          <MinutesCard>
-            <IndicatorsMinute>Pomodoro</IndicatorsMinute>
-            <IndicatorsMinute>Short Break</IndicatorsMinute>
-            <IndicatorsMinute>Long Break</IndicatorsMinute>
-          </MinutesCard>
-        </ViewMinutes>
-        <Minutes>
-          <Title>Personalize:</Title>
-          <AreaCardsChangeMinute>
-            <CardsChangeMinute>
-              <TextIndicators>Pomodoro:    </TextIndicators>
-              <SpaceChangeMinute>
-                <TouchableIncrementeDescrement onPress={() => descrement('pomodoroMinutes')}>
-                  <TextTouchable>-</TextTouchable>
-                </TouchableIncrementeDescrement>
-                <Number>{pomodoroMinutes}</Number>
-                <TouchableIncrementeDescrement onPress={() => increment('pomodoroMinutes')}>
-                  <TextTouchable>+</TextTouchable>
-                </TouchableIncrementeDescrement>
-              </SpaceChangeMinute>
-            </CardsChangeMinute>
-            <CardsChangeMinute>
-              <TextIndicators>Short Break:</TextIndicators>
-              <SpaceChangeMinute>
-                <TouchableIncrementeDescrement onPress={() => descrement('shorMinutes')}>
-                  <TextTouchable>-</TextTouchable>
-                </TouchableIncrementeDescrement>
-                <Number>{shorMinutes}</Number>
-                <TouchableIncrementeDescrement onPress={() => increment('shorMinutes')}>
-                  <TextTouchable>+</TextTouchable>
-                </TouchableIncrementeDescrement>
-              </SpaceChangeMinute>
-            </CardsChangeMinute>
-            <CardsChangeMinute>
-              <TextIndicators>Long Break:</TextIndicators>
-              <SpaceChangeMinute>
-                <TouchableIncrementeDescrement onPress={() => descrement('longMinutes')}>
-                  <TextTouchable>-</TextTouchable>
-                </TouchableIncrementeDescrement>
-                <Number>{longMinutes}</Number>
-                <TouchableIncrementeDescrement onPress={() => increment('longMinutes')}>
-                  <TextTouchable>+</TextTouchable>
-                </TouchableIncrementeDescrement>
-              </SpaceChangeMinute>
-            </CardsChangeMinute>
-          </AreaCardsChangeMinute>
-        </Minutes>
-        <ButtonConfirm>
-          <Touchable onPress={() => navigation.navigate('Standard', {
+    <SafeArea colorBg='pomodoro'>
+      <S.Container>
+        <S.ViewMinutes>
+          <S.MinutesCard>
+            <S.Cards>{pomodoroMinutes}</S.Cards>
+            <S.Cards>{shorMinutes}</S.Cards>
+            <S.Cards>{longMinutes}</S.Cards>
+          </S.MinutesCard>
+          <S.MinutesCard>
+            <S.IndicatorsMinute>Pomodoro</S.IndicatorsMinute>
+            <S.IndicatorsMinute>Short Break</S.IndicatorsMinute>
+            <S.IndicatorsMinute>Long Break</S.IndicatorsMinute>
+          </S.MinutesCard>
+        </S.ViewMinutes>
+        <S.Minutes>
+          <S.Title>Personalize:</S.Title>
+          <S.AreaCardsChangeMinute>
+            <S.CardsChangeMinute>
+              <S.TextIndicators>Pomodoro:    </S.TextIndicators>
+              <S.SpaceChangeMinute>
+                <S.TouchableIncrementeDescrement onPress={() => descrement('pomodoroMinutes')}>
+                  <S.TextTouchable>-</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+                <S.Number>{pomodoroMinutes}</S.Number>
+                <S.TouchableIncrementeDescrement onPress={() => increment('pomodoroMinutes')}>
+                  <S.TextTouchable>+</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+              </S.SpaceChangeMinute>
+            </S.CardsChangeMinute>
+            <S.CardsChangeMinute>
+              <S.TextIndicators>Short Break:</S.TextIndicators>
+              <S.SpaceChangeMinute>
+                <S.TouchableIncrementeDescrement onPress={() => descrement('shorMinutes')}>
+                  <S.TextTouchable>-</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+                <S.Number>{shorMinutes}</S.Number>
+                <S.TouchableIncrementeDescrement onPress={() => increment('shorMinutes')}>
+                  <S.TextTouchable>+</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+              </S.SpaceChangeMinute>
+            </S.CardsChangeMinute>
+            <S.CardsChangeMinute>
+              <S.TextIndicators>Long Break:</S.TextIndicators>
+              <S.SpaceChangeMinute>
+                <S.TouchableIncrementeDescrement onPress={() => descrement('longMinutes')}>
+                  <S.TextTouchable>-</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+                <S.Number>{longMinutes}</S.Number>
+                <S.TouchableIncrementeDescrement onPress={() => increment('longMinutes')}>
+                  <S.TextTouchable>+</S.TextTouchable>
+                </S.TouchableIncrementeDescrement>
+              </S.SpaceChangeMinute>
+            </S.CardsChangeMinute>
+          </S.AreaCardsChangeMinute>
+        </S.Minutes>
+        <S.ButtonConfirm>
+          <S.Touchable onPress={() => navigation.navigate('Standard', {
             pomodoro: pomodoroMinutes,
             shortBreak: shorMinutes,
             longBreak: longMinutes
           })}>
-            <TextTouchableConfirm>Confirmar</TextTouchableConfirm>
-          </Touchable>
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
-            <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
-          </TouchableOpacity>
-        </ButtonConfirm>
-      </Container >
-    </SafeAreaView >
+            <S.TextTouchableConfirm>Confirmar</S.TextTouchableConfirm>
+          </S.Touchable>
+          <LinkedinLink />
+        </S.ButtonConfirm>
+      </S.Container >
+    </SafeArea>
   );
 }

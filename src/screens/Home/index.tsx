@@ -1,28 +1,11 @@
 import React, { useState } from "react";
-import { TouchableOpacity, Linking, Modal } from "react-native";
+import { TouchableOpacity, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import { PropsStack } from "../../models";
-import {
-  Container,
-  AreaModal,
-  Main,
-  ViewModal,
-  WelcomeTexts,
-  Title,
-  Texts,
-  Touchable,
-  TextTouchable,
-  TextFooter,
-  ContentModal,
-  AreaClose,
-  CloseTouchable,
-  XForClose,
-  ViewTextsModal,
-  TitleModal,
-  TextModal,
-  CopyRight,
-  ViewCopy
-} from "./styles";
+import { SafeArea } from "../Standard/style";
+import { LinkedinLink } from "../../components/LinkedinLink";
+import * as S from "./styles";
 
 export default function ChooseConfig() {
 
@@ -43,48 +26,48 @@ export default function ChooseConfig() {
   }
 
   return (
-    <Container opacity={opacityContainer}>
-      <Modal transparent={true} animationType='slide' visible={modalVisible}>
-        <AreaModal>
-          <ContentModal>
-            <AreaClose>
-              <CloseTouchable onPress={() => hideModal()}>
-                <XForClose>X</XForClose>
-              </CloseTouchable>
-            </AreaClose>
-            <ViewTextsModal>
-              <TitleModal>Padrão:</TitleModal>
-              <TextModal>Com a configuração padrão você vai ter ciclos comuns da pomodoro com 25 minutos de foco, 5 de intervalo curto e 15 de intervalo longo.</TextModal>
-            </ViewTextsModal>
-            <ViewTextsModal>
-              <TitleModal>Personalizada:</TitleModal>
-              <TextModal>Com a configuração personalizada você vai ter ciclos comuns da pomodoro, porém poderá definir quantos minutos vai ter de foco, intervalo curto e intervalo longo. Mas com um limite de tempo de 30 minutos para cada.</TextModal>
-            </ViewTextsModal>
-          </ContentModal>
-        </AreaModal>
-      </Modal>
-      <WelcomeTexts>
-        <Title>Seja bem vindo ao Pomo Focus</Title>
-        <Texts>Antes de iniciarmos de fato, preciso que você defina qual configuração a ser utilizada</Texts>
-      </WelcomeTexts>
-      <Main>
-        <Touchable onPress={() => navigation.navigate('Standard')}>
-          <TextTouchable >Padrão</TextTouchable>
-        </Touchable>
-        <Touchable onPress={() => navigation.navigate('Customize')}>
-          <TextTouchable >Personalizada</TextTouchable>
-        </Touchable>
-      </Main>
-      <ViewModal>
-        <TouchableOpacity onPress={() => showModal()}>
-          <TextFooter>Como funciona?</TextFooter>
-        </TouchableOpacity>
-      </ViewModal>
-      <ViewCopy>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/ghabriel-elias/')}>
-          <CopyRight>Desevolvido por ©Ghabriel Elias</CopyRight>
-        </TouchableOpacity>
-      </ViewCopy>
-    </Container>
+    <SafeArea colorBg='pomodoro'>
+      <S.Container opacity={opacityContainer}>
+        <Modal transparent={true} animationType='slide' visible={modalVisible}>
+          <S.AreaModal>
+            <S.ContentModal>
+              <S.AreaClose>
+                <S.CloseTouchable onPress={() => hideModal()}>
+                  <S.XForClose>X</S.XForClose>
+                </S.CloseTouchable>
+              </S.AreaClose>
+              <S.ViewTextsModal>
+                <S.TitleModal>Padrão:</S.TitleModal>
+                <S.TextModal>Com a configuração padrão você vai ter ciclos comuns da pomodoro com 25 minutos de foco, 5 de intervalo curto e 15 de intervalo longo.</S.TextModal>
+              </S.ViewTextsModal>
+              <S.ViewTextsModal>
+                <S.TitleModal>Personalizada:</S.TitleModal>
+                <S.TextModal>Com a configuração personalizada você vai ter ciclos comuns da pomodoro, porém poderá definir quantos minutos vai ter de foco, intervalo curto e intervalo longo. Mas com um limite de tempo de 30 minutos para cada.</S.TextModal>
+              </S.ViewTextsModal>
+            </S.ContentModal>
+          </S.AreaModal>
+        </Modal>
+        <S.WelcomeTexts>
+          <S.Title>Seja bem vindo ao Pomo Focus</S.Title>
+          <S.Texts>Antes de iniciarmos de fato, preciso que você defina qual configuração a ser utilizada</S.Texts>
+        </S.WelcomeTexts>
+        <S.Main>
+          <S.Touchable onPress={() => navigation.navigate('Standard')}>
+            <S.TextTouchable>Padrão</S.TextTouchable>
+          </S.Touchable>
+          <S.Touchable onPress={() => navigation.navigate('Customize')}>
+            <S.TextTouchable>Personalizada</S.TextTouchable>
+          </S.Touchable>
+        </S.Main>
+        <S.ViewModal>
+          <TouchableOpacity onPress={() => showModal()}>
+            <S.TextFooter>Como funciona?</S.TextFooter>
+          </TouchableOpacity>
+        </S.ViewModal>
+        <S.ViewCopy>
+          <LinkedinLink />
+        </S.ViewCopy>
+      </S.Container>
+    </SafeArea>
   )
 }

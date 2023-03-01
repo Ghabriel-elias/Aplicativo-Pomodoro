@@ -2,10 +2,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type propsNavigationStack = {
   Home: undefined
-  Standard: {
-    pomodoro?: string,
-    shortBreak?: string,
-    longBreak?: string
+  Standard?: {
+    pomodoro: string,
+    shortBreak: string,
+    longBreak: string
   }
   Customize: undefined
 }

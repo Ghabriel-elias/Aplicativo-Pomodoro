@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-
 interface OpacityContent {
   opacity: true | false
 }
@@ -28,7 +27,6 @@ export const ContentModal = styled.View`
   height: 70%;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-
 `
 
 export const AreaClose = styled.View`
@@ -131,10 +129,4 @@ export const ViewCopy = styled.View`
   flex: 0.3;
   justify-content: center;
   align-items: center;
-`
-
-export const CopyRight = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.semiBold};
-  font-size: ${RFValue(13)}px;
-  color: ${({ theme }) => theme.colors.text};
 `

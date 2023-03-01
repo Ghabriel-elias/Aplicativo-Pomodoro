@@ -130,10 +130,3 @@ export const TextTouchableConfirm = styled.Text`
   font-family: ${({ theme }) => theme.fonts.semiBold};
   padding: ${RFValue(5)}px ${RFValue(0)}px;
 `
-
-export const CopyRight = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.semiBold};
-  font-size: ${RFValue(13)}px;
-  color: ${({ theme }) => theme.colors.text};
-  text-align: center;
-`
