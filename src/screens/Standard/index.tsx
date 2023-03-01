@@ -55,7 +55,6 @@ export default function Standard({ route }: any) {
     setLongIndicator('desactive')
 
     clearInterval(timer)
-    // setContagem('25:00')
     setTextButton('Start')
     ss = 0
     if( route.params?.pomodoro != undefined){
@@ -76,12 +75,12 @@ export default function Standard({ route }: any) {
     setLongIndicator('desactive')
 
     clearInterval(timer)
-    // setContagem('05:00')
     setTextButton('Start')
     ss = 0
     if(route.params?.shortBreak != undefined){
       mm = Number(route.params?.shortBreak)
       setContagem(`${route.params?.shortBreak}:00`)
+      return
     }
     mm = 5
     setContagem('05:00')
@@ -97,12 +96,12 @@ export default function Standard({ route }: any) {
 
     clearInterval(timer)
     setTextButton('Start')
-    // setContagem('15:00')
 
     ss = 0
     if(route.params?.longBreak != undefined){
       mm = Number(route.params?.longBreak)
       setContagem(`${route.params?.longBreak}:00`)
+      return
     }
     mm = 15
     setContagem('15:00')
