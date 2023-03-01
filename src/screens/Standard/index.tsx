@@ -23,12 +23,14 @@ let mm = 25
 
 export default function Standard({ route }: any) {
 
-  const [pomodoroMinutes, setPomodoroMinutes] = useState('')
-
   useEffect(() => {
-    if (route.params?.pomodoro) {
-
-    }
+    console.log(route.params?.longBreak)
+    if (route.params?.pomodoro != undefined) {
+      setContagem(`${route.params?.pomodoro}:00`)
+      mm = Number(route.params?.pomodoro)
+      return
+    } 
+    setContagem('25:00')
   }, [])
 
   const [BgColor, setBgColor] = useState('pomodoro')
@@ -53,11 +55,16 @@ export default function Standard({ route }: any) {
     setLongIndicator('desactive')
 
     clearInterval(timer)
-    setContagem('25:00')
+    // setContagem('25:00')
     setTextButton('Start')
     ss = 0
+    if( route.params?.pomodoro != undefined){
+      mm = Number( route.params?.pomodoro)
+      setContagem(`${route.params?.pomodoro}:00`)
+      return
+    } 
     mm = 25
-
+    setContagem('25:00')
   }
 
   function changeForShort() {
@@ -69,10 +76,15 @@ export default function Standard({ route }: any) {
     setLongIndicator('desactive')
 
     clearInterval(timer)
-    setContagem('05:00')
+    // setContagem('05:00')
     setTextButton('Start')
     ss = 0
+    if(route.params?.shortBreak != undefined){
+      mm = Number(route.params?.shortBreak)
+      setContagem(`${route.params?.shortBreak}:00`)
+    }
     mm = 5
+    setContagem('05:00')
   }
 
   function changeForLong() {
@@ -85,10 +97,15 @@ export default function Standard({ route }: any) {
 
     clearInterval(timer)
     setTextButton('Start')
-    setContagem('15:00')
+    // setContagem('15:00')
 
     ss = 0
+    if(route.params?.longBreak != undefined){
+      mm = Number(route.params?.longBreak)
+      setContagem(`${route.params?.longBreak}:00`)
+    }
     mm = 15
+    setContagem('15:00')
   }
 
   function start() {
