@@ -12,12 +12,7 @@ let mm = 25
 export default function Standard({ route }: any) {
 
   useEffect(() => {
-    if (route.params?.pomodoro != undefined) {
-      setContagem(`${route.params?.pomodoro}:00`)
-      mm = Number(route.params?.pomodoro)
-      return
-    }
-    setContagem('25:00')
+    changeForPomodoro()
   }, [])
 
   const [BgColor, setBgColor] = useState('pomodoro')
