@@ -56,8 +56,8 @@ export const Main = styled.View<ColorsChange>`
   ${(props => props.colorBg === 'long' && css`
     background-color: ${({ theme }) => theme.colors.longBreakCont};
   `)}
-  margin-top: ${RFValue(10)}px;
-  flex: 1 ;
+  margin-top: ${RFValue(20)}px;
+  flex: 1;
   width: 90%;
   flex-direction: column;
   align-items: center;
@@ -98,9 +98,12 @@ export const Cont = styled.Text`
   `
 
 export const StartTouchble = styled.TouchableOpacity`
-  margin-bottom: ${RFValue(50)}px;
+  margin-bottom: ${RFValue(25)}px;
   background-color: ${({ theme }) => theme.colors.text};
-  padding: 5px ${RFValue(58)}px;
+  padding: 5px;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
   `
 
@@ -116,4 +119,16 @@ export const Start = styled.Text<ColorsChange>`
   `)}
   font-family: ${({ theme }) => theme.fonts.semiBold};
   font-size: ${RFValue(28)}px;
+`
+
+export const ViewFooterMain = styled.View`
+ width: 100%;
+ align-items: center;
+ margin-bottom: ${RFValue(15)}px;
+`
+
+export const TextFooter = styled.Text`
+ font-size: ${RFValue(16)}px;
+ color: ${({ theme }) => theme.colors.text};
+ font-family: ${({ theme }) => theme.fonts.semiBold};
 `

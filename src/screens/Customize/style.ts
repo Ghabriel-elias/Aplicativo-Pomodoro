@@ -6,8 +6,37 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.pomodoro};
 `
 
+export const ContentModal = styled.View`
+  background-color: ${({ theme }) => theme.colors.text};
+  width: 100%;
+  padding: 40px 20px 40px 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+`
+
+export const ViewTextsModal = styled.View`
+  width: 100%;
+`
+
+export const TitleModal = styled.Text`
+  text-align: center;
+  padding-bottom: 20px;
+  color: ${({ theme }) => theme.colors.backgroundModal};
+  font-size: ${RFValue(20)}px;
+  font-family: ${({ theme }) => theme.fonts.Bold};
+`
+
+export const TextModal = styled.Text`
+  padding-bottom: 20px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.backgroundModal};
+  font-size: ${RFValue(14)}px;
+  font-family: ${({ theme }) => theme.fonts.semiBold};
+`
+
+
 export const ViewMinutes = styled.View`
-  flex: 0.6;
+  flex: 0.5;
   align-items: center;
   justify-content: center;
 `
@@ -20,13 +49,13 @@ export const Minutes = styled.View`
 `
 
 export const ButtonConfirm = styled.View`
-  flex: 0.4;
+  flex: 0.5;
   align-items: center;
   justify-content: space-around;
 `
 
 export const MinutesCard = styled.View`
-  width: 100%;
+  width: 90%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -37,7 +66,7 @@ export const Cards = styled.Text`
   font-size: ${RFValue(50)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.Bold};
-  padding: ${RFValue(20)}px ${RFValue(0)}px;
+  padding: ${RFValue(5)}px ${RFValue(0)}px;
   border-radius: ${RFValue(5)}px;
   width: 30%;
   text-align: center;
@@ -79,33 +108,36 @@ export const CardsChangeMinute = styled.View`
 `
 
 export const TextIndicators = styled.Text`
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(18)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.semiBold};
 `
 
 export const SpaceChangeMinute = styled.View`
+  background-color: ${({ theme }) => theme.colors.pomodoro};
+  border-radius: 10px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 40%;
+  /* margin-right: 20px; */
 `
 
 export const Number = styled.Text`
-  font-size: ${RFValue(40)}px;
+  font-size: ${RFValue(30)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.Bold};
   text-align: center;
-  width: 50%;
+  /* width: 45%; */
 `
 
 export const TouchableIncrementeDescrement = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.colors.pomodoro};
+  /* background-color: ${({ theme }) => theme.colors.pomodoro}; */
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.regular};
-  border-radius: ${RFValue(25)}px;
+  /* border-radius: ${RFValue(25)}px; */
   height: ${RFValue(35)}px;
-  width: ${RFValue(35)}px;
+  width: ${RFValue(25)}px;
   align-items: center;
   justify-content: center;
 `

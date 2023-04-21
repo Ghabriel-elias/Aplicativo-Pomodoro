@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './style'
 import { LinkedinLink } from '../../components/LinkedinLink';
+import { View , TouchableOpacity} from 'react-native';
+import { ModalChangeConfig } from '../../components/ModalChangeConfig';
 
 let timer: any
 
@@ -16,6 +18,8 @@ export default function Standard({ route }: any) {
   }, [])
 
   const [BgColor, setBgColor] = useState('pomodoro')
+
+  const [modalVisible, setModalVisible] = useState(false)
 
   const [pomodoroIndicator, setPomodoroIndicator] = useState('active')
   const [shortIndicator, setShortIndicator] = useState('desactive')
@@ -127,6 +131,7 @@ export default function Standard({ route }: any) {
 
   return (
     <S.SafeArea colorBg={BgColor}>
+      <ModalChangeConfig isVisible={modalVisible} setVisible={setModalVisible}/>
       <S.Container colorBg={BgColor}>
         <S.Main colorBg={BgColor}>
           <S.Indicators>
@@ -141,9 +146,14 @@ export default function Standard({ route }: any) {
             </S.IndicatorTouchble>
           </S.Indicators>
           <S.Cont>{contagem}</S.Cont>
-          <S.StartTouchble onPress={start}>
+         <S.ViewFooterMain>
+         <S.StartTouchble onPress={start}>
             <S.Start colorBg={BgColor}>{textButton}</S.Start>
           </S.StartTouchble>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <S.TextFooter>Mudar configuração</S.TextFooter>
+          </TouchableOpacity>
+         </S.ViewFooterMain>
         </S.Main>
         <S.AreaTexts>
           <LinkedinLink />

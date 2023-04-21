@@ -5,6 +5,7 @@ import { PropsStack } from '../../models';
 import { SafeArea } from '../Standard/style';
 import { LinkedinLink } from '../../components/LinkedinLink';
 import * as S from './style'
+import { ModalWarningCustomize } from '../../components/ModalWarningCustomize';
 
 export default function Customize() {
 
@@ -79,8 +80,23 @@ export default function Customize() {
     }
   }
 
+  const [modalVisible, setModalVisible] = useState(false)
+
+  function confirmMinutes(){
+    if(pomodoroMinutes == 0 || shorMinutes == 0 || longMinutes == 0){
+      setModalVisible(true)
+    } else {
+      navigation.navigate('Standard', {
+        pomodoro: pomodoroMinutes,
+        shortBreak: shorMinutes,
+        longBreak: longMinutes
+      })
+    }
+  }
+
   return (
     <SafeArea colorBg='pomodoro'>
+       <ModalWarningCustomize isVisible={modalVisible} setVisible={setModalVisible}/>
       <S.Container>
         <S.ViewMinutes>
           <S.MinutesCard>
@@ -95,10 +111,10 @@ export default function Customize() {
           </S.MinutesCard>
         </S.ViewMinutes>
         <S.Minutes>
-          <S.Title>Personalize:</S.Title>
+          <S.Title>Personalize</S.Title>
           <S.AreaCardsChangeMinute>
             <S.CardsChangeMinute>
-              <S.TextIndicators>Pomodoro:    </S.TextIndicators>
+              <S.TextIndicators>Pomodoro    </S.TextIndicators>
               <S.SpaceChangeMinute>
                 <S.TouchableIncrementeDescrement onPress={() => descrement('pomodoroMinutes')}>
                   <S.TextTouchable>-</S.TextTouchable>
@@ -110,7 +126,7 @@ export default function Customize() {
               </S.SpaceChangeMinute>
             </S.CardsChangeMinute>
             <S.CardsChangeMinute>
-              <S.TextIndicators>Short Break:</S.TextIndicators>
+              <S.TextIndicators>Short Break</S.TextIndicators>
               <S.SpaceChangeMinute>
                 <S.TouchableIncrementeDescrement onPress={() => descrement('shorMinutes')}>
                   <S.TextTouchable>-</S.TextTouchable>
@@ -122,7 +138,7 @@ export default function Customize() {
               </S.SpaceChangeMinute>
             </S.CardsChangeMinute>
             <S.CardsChangeMinute>
-              <S.TextIndicators>Long Break:</S.TextIndicators>
+              <S.TextIndicators>Long Break</S.TextIndicators>
               <S.SpaceChangeMinute>
                 <S.TouchableIncrementeDescrement onPress={() => descrement('longMinutes')}>
                   <S.TextTouchable>-</S.TextTouchable>
@@ -136,11 +152,7 @@ export default function Customize() {
           </S.AreaCardsChangeMinute>
         </S.Minutes>
         <S.ButtonConfirm>
-          <S.Touchable onPress={() => navigation.navigate('Standard', {
-            pomodoro: pomodoroMinutes,
-            shortBreak: shorMinutes,
-            longBreak: longMinutes
-          })}>
+          <S.Touchable onPress={confirmMinutes}>
             <S.TextTouchableConfirm>Confirmar</S.TextTouchableConfirm>
           </S.Touchable>
           <LinkedinLink />

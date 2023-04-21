@@ -1,70 +1,62 @@
 import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
-interface OpacityContent {
-  opacity: true | false
-}
 
-export const Container = styled.View<OpacityContent>`
+export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.pomodoro};
-  ${(props => props.opacity === true && css`
-    opacity: 1;
-  `)}
-  ${(props => props.opacity === false && css`
-    opacity: 0.8;
-  `)}
 `
 
-export const AreaModal = styled.View`
-  flex: 1;
-  justify-content: flex-end;
-  align-items:center; 
-  `
+// export const AreaModal = styled.View`
+//   justify-content: flex-end;
+//   align-items:center; 
+//   `
 
-export const ContentModal = styled.View`
-  background-color: ${({ theme }) => theme.colors.backgroundModal};
-  width: 100%;
-  height: 70%;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-`
+// export const ContentModal = styled.View`
+//   background-color: ${({ theme }) => theme.colors.text};
+//   width: 100%;
+//   padding: 20px;
+//   border-top-left-radius: 25px;
+//   border-top-right-radius: 25px;
+// `
 
-export const AreaClose = styled.View`
-  justify-content: center;
-  align-items: flex-end;
-`
+// export const AreaClose = styled.View`
+//   justify-content: center;
+//   align-items: flex-end;
+// `
 
-export const CloseTouchable = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.colors.text};
-  margin-top: ${RFValue(10)}px;
-  margin-right: ${RFValue(10)}px;
-  border-radius: ${RFValue(25)}px;
-  padding: ${RFValue(5)}px ${RFValue(9)}px;
-`
+// export const CloseTouchable = styled.TouchableOpacity`
+//   background-color: ${({ theme }) => theme.colors.text};
+//   margin-top: ${RFValue(10)}px;
+//   margin-right: ${RFValue(10)}px;
+//   border-radius: ${RFValue(25)}px;
+//   padding: ${RFValue(5)}px ${RFValue(9)}px;
+// `
 
-export const XForClose = styled.Text`
-  color: ${({ theme }) => theme.colors.pomodoro};
-  font-size: ${RFValue(20)}px;
-  font-family: ${({ theme }) => theme.fonts.semiBold};
-`
+// export const XForClose = styled.Text`
+//   color: ${({ theme }) => theme.colors.pomodoro};
+//   font-size: ${RFValue(20)}px;
+//   font-family: ${({ theme }) => theme.fonts.semiBold};
+// `
 
-export const ViewTextsModal = styled.View`
-  flex: 0.4;
-  margin-left: ${RFValue(10)}px;
-  width: 90%;
-`
+// export const ViewTextsModal = styled.View`
+//   width: 100%;
+// `
 
-export const TitleModal = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(22)}px;
-  font-family: ${({ theme }) => theme.fonts.Bold};
-`
+// export const TitleModal = styled.Text`
+//   text-align: center;
+//   padding-bottom: 20px;
+//   color: ${({ theme }) => theme.colors.backgroundModal};
+//   font-size: ${RFValue(20)}px;
+//   font-family: ${({ theme }) => theme.fonts.Bold};
+// `
 
-export const TextModal = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(16)}px;
-  font-family: ${({ theme }) => theme.fonts.semiBold};
-`
+// export const TextModal = styled.Text`
+//   padding-bottom: 20px;
+//   text-align: center;
+//   color: ${({ theme }) => theme.colors.backgroundModal};
+//   font-size: ${RFValue(14)}px;
+//   font-family: ${({ theme }) => theme.fonts.semiBold};
+// `
 
 export const TextFooter = styled.Text`
  font-size: ${RFValue(16)}px;
@@ -105,7 +97,7 @@ export const Main = styled.View`
 
 export const Touchable = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.text};
-  width: 70%;
+  width: 80%;
   justify-content: center;
   align-items: center;
   margin-top: ${RFValue(15)}px;
