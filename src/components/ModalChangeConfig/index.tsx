@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Modal from "react-native-modal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { PropsStack } from "../../models";
 import * as S from "./styles";
@@ -8,15 +9,19 @@ import * as S from "./styles";
 interface ModalProps{
   isVisible: boolean,
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  config?: string | undefined;
+  config?: string;
 }
 
 export function ModalChangeConfig({isVisible, setVisible, config}: ModalProps) {
 
   const navigation = useNavigation<PropsStack>()
 
-  function changeConfig(){
-    navigation.navigate('Home')
+  async function changeConfig(){
+    await AsyncStorage.setItem("config", '')
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Home' }],
+    })
     setVisible(false)
   }
 

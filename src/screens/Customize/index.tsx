@@ -6,10 +6,15 @@ import { SafeArea } from '../Standard/style';
 import { LinkedinLink } from '../../components/LinkedinLink';
 import * as S from './style'
 import { ModalWarningCustomize } from '../../components/ModalWarningCustomize';
+import { ModalConfirmConfig } from '../../components/ModalConfirmConfig';
 
-export default function Customize() {
+export default function Customize({route}: any) {
+
+  const params = route
 
   const navigation = useNavigation<PropsStack>()
+
+  const [modalConfigConfirm, setModalConfigConfirm] = useState(false)
 
   const [pomodoroMinutes, setPomodoroMinutes]: any = useState('00')
 
@@ -86,17 +91,14 @@ export default function Customize() {
     if(pomodoroMinutes == 0 || shorMinutes == 0 || longMinutes == 0){
       setModalVisible(true)
     } else {
-      navigation.navigate('Standard', {
-        pomodoro: pomodoroMinutes,
-        shortBreak: shorMinutes,
-        longBreak: longMinutes
-      })
+      setModalConfigConfirm(true)
     }
   }
 
   return (
     <SafeArea colorBg='pomodoro'>
        <ModalWarningCustomize isVisible={modalVisible} setVisible={setModalVisible}/>
+       <ModalConfirmConfig pomodoro={pomodoroMinutes} shortBreak={shorMinutes} longBreak={longMinutes} isVisible={modalConfigConfirm} setVisible={setModalConfigConfirm} config={params.params?.config}/>
       <S.Container>
         <S.ViewMinutes>
           <S.MinutesCard>

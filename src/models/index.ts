@@ -7,7 +7,9 @@ export type propsNavigationStack = {
     shortBreak: string,
     longBreak: string
   }
-  Customize: undefined
+  Customize?: {
+    config: string;
+  }
 }
 
 export type PropsStack = NativeStackNavigationProp<propsNavigationStack>

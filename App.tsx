@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,6 +22,34 @@ import { propsNavigationStack } from './src/models';
 
 export default function App() {
 
+  const [route, setRoute] = useState('')
+
+  const [pomodoroAsync, setPomodoroAsync] = useState<any>('')
+  const [shortAsync, setShortAsync] = useState<any>('')
+  const [longAsync, setLongAsync] = useState<any>('')
+
+
+  useEffect(() => {
+    async function Load() {
+        const pomodoro = await AsyncStorage.getItem("pomodoro")
+        const short =  await AsyncStorage.getItem("shortBreak")
+        const long = await AsyncStorage.getItem("longBreak")
+         if(pomodoro && short && long){
+           setPomodoroAsync(pomodoro)
+           setShortAsync(short)
+           setLongAsync(long)
+           return
+         }
+     const config = await AsyncStorage.getItem("config")
+     if(config === 'standart'){
+      setRoute('Standard')
+     } else {
+      setRoute('Standard', {})
+     }
+    }
+    Load()
+  }, [])
+
   const Stack = createNativeStackNavigator<propsNavigationStack>()
 
   const [fontsLoader] = useFonts({
@@ -38,7 +67,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={
+          route === 'Standard' ? 'Standard' : 'Home'
+        }>
           <Stack.Screen
             name='Home'
             component={Home}

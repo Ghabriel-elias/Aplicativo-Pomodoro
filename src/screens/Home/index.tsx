@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FlatList, TouchableOpacity } from "react-native";
+import { ActivityIndicator, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { PropsStack } from "../../models";
 import { SafeArea } from "../Standard/style";
@@ -8,32 +9,34 @@ import { LinkedinLink } from "../../components/LinkedinLink";
 import * as S from "./styles";
 import { ModalDescriptionConfigs } from "../../components/ModalDescriptionConfigs";
 import { ModalConfirmConfig } from "../../components/ModalConfirmConfig";
-
-
+import Loading from "../../components/Loading";
 
 export default function ChooseConfig() {
+
+  const navigation = useNavigation<PropsStack>()
 
   const [opacityContainer, setOpacityContainer] = useState(true)
 
   const [modalVisible, setModalVisible] = useState(false)
-
+  
   const [modalConfigConfirm, setModalConfigConfirm] = useState(false)
 
-  const [config, setConfig] = useState<string | undefined>(undefined)
+  const [config, setConfig] = useState<string>('')
 
   function showModal() {
     setModalVisible(true)
     setOpacityContainer(false)
   }
 
-  function standarConfig(){
+  async function standarConfig(){
     setConfig('standart')
     setModalConfigConfirm(true)
   }
 
-  function customizeConfig(){
+  async function customizeConfig(){
     setConfig('customize')
-    setModalConfigConfirm(true)
+    navigation.navigate('Customize', {config: config})
+    // setModalConfigConfirm(true)
   }
 
   return (
@@ -50,7 +53,7 @@ export default function ChooseConfig() {
             <S.TextTouchable>Padrão</S.TextTouchable>
           </S.Touchable>
           <S.Touchable onPress={() => customizeConfig()}>
-            <S.TextTouchable>Personalizada</S.TextTouchable>
+              <S.TextTouchable>Personalizada</S.TextTouchable>
           </S.Touchable>
         </S.Main>
         <S.ViewModal>
