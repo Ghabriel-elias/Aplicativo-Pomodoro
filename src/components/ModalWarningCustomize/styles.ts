@@ -34,6 +34,7 @@ export const Touchable = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.pomodoro};
   width: 70%;
   justify-content: center;
+  height:  ${RFValue(49)}px;
   align-items: center;
   border-radius: 10px;
 `
@@ -42,5 +43,4 @@ export const TextTouchableConfirm = styled.Text`
   font-size: ${RFValue(30)}px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.semiBold};
-  padding: ${RFValue(5)}px ${RFValue(0)}px;
 `

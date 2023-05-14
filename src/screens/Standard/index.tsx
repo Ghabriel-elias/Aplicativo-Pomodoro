@@ -49,11 +49,6 @@ export default function Standard({ route }: any) {
       setContagem(`${route.params?.pomodoro}:00`)
       return
     }
-    if (pomodoroAsync != '') {
-      mm = Number(pomodoroAsync)
-      setContagem(`${pomodoroAsync}:00`)
-      return
-    }
     mm = 25
     setContagem('25:00')
   }
@@ -72,11 +67,6 @@ export default function Standard({ route }: any) {
     if (route.params?.shortBreak != undefined) {
       mm = Number(route.params?.shortBreak)
       setContagem(`${route.params?.shortBreak}:00`)
-      return
-    }
-    if (shortAsync != '') {
-      mm = Number(shortAsync)
-      setContagem(`${shortAsync}:00`)
       return
     }
     mm = 5
@@ -98,11 +88,6 @@ export default function Standard({ route }: any) {
     if (route.params?.longBreak != undefined) {
       mm = Number(route.params?.longBreak)
       setContagem(`${route.params?.longBreak}:00`)
-      return
-    }
-    if (longAsync != '') {
-      mm = Number(longAsync)
-      setContagem(`${longAsync}:00`)
       return
     }
     mm = 15

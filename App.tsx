@@ -44,7 +44,7 @@ export default function App() {
      if(config === 'standart'){
       setRoute('Standard')
      } else {
-      setRoute('Standard', {})
+      setRoute('Standard')
      }
     }
     Load()

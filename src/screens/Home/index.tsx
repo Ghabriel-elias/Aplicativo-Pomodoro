@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,9 +9,27 @@ import { LinkedinLink } from "../../components/LinkedinLink";
 import * as S from "./styles";
 import { ModalDescriptionConfigs } from "../../components/ModalDescriptionConfigs";
 import { ModalConfirmConfig } from "../../components/ModalConfirmConfig";
-import Loading from "../../components/Loading";
 
 export default function ChooseConfig() {
+
+  useEffect(() => {
+    async function takeConfig() {
+      const config = await AsyncStorage.getItem("config")
+        if(config === 'standart'){
+          navigation.navigate('Standard')
+        } else if(config === 'customize'){
+          const pomodoro = await AsyncStorage.getItem("pomodoro")
+          const shortBreak = await AsyncStorage.getItem("shortBreak")
+          const longBreak = await AsyncStorage.getItem("longBreak")
+           navigation.navigate('Standard', {
+            pomodoro: pomodoro,
+            shortBreak: shortBreak,
+            longBreak: longBreak
+          })
+        }
+    }
+    takeConfig()
+  }, [])
 
   const navigation = useNavigation<PropsStack>()
 
@@ -28,21 +46,18 @@ export default function ChooseConfig() {
     setOpacityContainer(false)
   }
 
-  async function standarConfig(){
-    setConfig('standart')
+  function standarConfig(){
     setModalConfigConfirm(true)
   }
 
-  async function customizeConfig(){
-    setConfig('customize')
-    navigation.navigate('Customize', {config: config})
-    // setModalConfigConfirm(true)
+  function customizeConfig(){
+    navigation.navigate('Customize')
   }
 
   return (
     <SafeArea colorBg='pomodoro'>
       <ModalDescriptionConfigs isVisible={modalVisible} setVisible={setModalVisible}/>
-        <ModalConfirmConfig isVisible={modalConfigConfirm} setVisible={setModalConfigConfirm} config={config}/>
+        <ModalConfirmConfig isVisible={modalConfigConfirm} setVisible={setModalConfigConfirm} config={'standart'}/>
       <S.Container>
         <S.WelcomeTexts>
           <S.Title>Seja bem vindo ao Pomo Focus</S.Title>

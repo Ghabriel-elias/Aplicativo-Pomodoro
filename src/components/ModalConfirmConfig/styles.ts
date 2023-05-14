@@ -44,6 +44,7 @@ export const Touchable = styled.TouchableOpacity<Button>`
     width: 70%;
   `)}
   justify-content: center;
+  height:  ${RFValue(49)}px;
   align-items: center;
   margin-top: ${RFValue(15)}px;
   border-radius: 10px;

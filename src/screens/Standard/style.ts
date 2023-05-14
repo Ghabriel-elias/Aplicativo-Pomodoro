@@ -69,6 +69,7 @@ export const Indicators = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0px 10px;
 `
 
 export const IndicatorTouchble = styled.TouchableOpacity<BgTextChange>`

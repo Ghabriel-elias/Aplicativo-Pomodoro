@@ -18,6 +18,10 @@ export function ModalChangeConfig({isVisible, setVisible, config}: ModalProps) {
 
   async function changeConfig(){
     await AsyncStorage.setItem("config", '')
+    await AsyncStorage.setItem("pomodoro", '')
+    await AsyncStorage.setItem("shortBreak", '')
+    await AsyncStorage.setItem("longBreak", '')
+
     navigation.reset({
       index: 0,
       routes: [{ name: 'Home' }],

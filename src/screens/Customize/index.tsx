@@ -10,8 +10,6 @@ import { ModalConfirmConfig } from '../../components/ModalConfirmConfig';
 
 export default function Customize({route}: any) {
 
-  const params = route
-
   const navigation = useNavigation<PropsStack>()
 
   const [modalConfigConfirm, setModalConfigConfirm] = useState(false)
@@ -98,7 +96,7 @@ export default function Customize({route}: any) {
   return (
     <SafeArea colorBg='pomodoro'>
        <ModalWarningCustomize isVisible={modalVisible} setVisible={setModalVisible}/>
-       <ModalConfirmConfig pomodoro={pomodoroMinutes} shortBreak={shorMinutes} longBreak={longMinutes} isVisible={modalConfigConfirm} setVisible={setModalConfigConfirm} config={params.params?.config}/>
+       <ModalConfirmConfig pomodoro={pomodoroMinutes} shortBreak={shorMinutes} longBreak={longMinutes} isVisible={modalConfigConfirm} setVisible={setModalConfigConfirm} config={'customize'}/>
       <S.Container>
         <S.ViewMinutes>
           <S.MinutesCard>
