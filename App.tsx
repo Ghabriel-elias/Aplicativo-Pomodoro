@@ -43,9 +43,7 @@ export default function App() {
      const config = await AsyncStorage.getItem("config")
      if(config === 'standart'){
       setRoute('Standard')
-     } else {
-      setRoute('Standard')
-     }
+     } 
     }
     Load()
   }, [])
